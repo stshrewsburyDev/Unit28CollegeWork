@@ -1,0 +1,54 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Website stats information page">
+        <meta name="author" content="Steven Shrewsbury">
+        <title>Stats - Paul's records</title>
+
+        <meta name="og:title" content="Stats | Paul's records">
+        <meta name="og:description" content="Website stats information page">
+        <meta name="og:locale" content="en_GB">
+        <meta name="og:type" content="website">
+    </head>
+    <body>
+        <h1>Website stats:</h1>
+        <h2><a href="../">Click to go back to home page!</a></h2>
+        <h4>Last updated: {{info["LAST_UPDATED"]}}</h4>
+        <ul>
+            <li><b>Python version:</b> {{info["PY_VER"]}}</li>
+            <li><b>Library:</b> {{info["LIB"]}}</li>
+            <li><b>SQL info:</b></li>
+            <ul>
+                <li><b>Library version:</b> {{info["SQL"]["LIB"]}}</li>
+                <li><b>SQL version:</b> {{info["SQL"]["SQL"]}}</li>
+            </ul>
+            <li><b>Last startup time:</b> {{info["STARTED"].strftime("%a %d %b %Y at %H:%M:%S")}}</li>
+            <li><b>UpTime:</b> {{uptime}}</li>
+            <li><b>Host OS:</b> {{info["OS"]}}</li>
+            <li><b>CPU:</b></li>
+            <ul>
+                <li><b>Brand:</b> {{info["CPU"]}}</li>
+                <li><b>Usage:</b> {{info["CPU_P"]}}</li>
+            </ul>
+            <li><b>RAM:</b></li>
+            <ul>
+                <li><b>Total:</b> {{info["RAM"]["T"]}} GB</li>
+                <li><b>Used:</b> {{info["RAM"]["U"]}} GB</li>
+                <li><b>Usage:</b> {{info["RAM"]["P"]}}</li>
+            </ul>
+            <li><b>SWAP:</b></li>
+            <ul>
+                <li><b>Total:</b> {{info["SWAP"]["T"]}} GB</li>
+                <li><b>Used:</b> {{info["SWAP"]["U"]}} GB</li>
+                <li><b>Usage:</b> {{info["SWAP"]["P"]}}</li>
+            </ul>
+            <li><b>DISC:</b></li>
+            <ul>
+                <li><b>Total:</b> {{info["DISC"]["T"]}} GB</li>
+                <li><b>Used:</b> {{info["DISC"]["U"]}} GB</li>
+                <li><b>Usage:</b> {{info["DISC"]["P"]}}</li>
+            </ul>
+        </ul>
+    </body>
+</html>

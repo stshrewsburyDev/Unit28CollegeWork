@@ -1,0 +1,74 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="About the site!">
+        <meta name="author" content="Steven Shrewsbury">
+        <title>About | Paul's records</title>
+
+        <meta name="og:title" content="About | Paul's records">
+        <meta name="og:description" content="About the site!">
+        <meta name="og:locale" content="en_GB">
+        <meta name="og:type" content="website">
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    </head>
+    <body style="background-image: url({{url_for('static', filename='images/bg.jpg')}});">
+        <div class="main_nav" id="main_navi">
+            <div class="content" style="background-color: rgba(150, 150, 150, .65);">
+                <img id="site_logo_navi" src="{{url_for('static', filename='images/title.png')}}" alt="Website logo" align="center" valign="center">
+                <style>
+                    #site_logo_navi{
+                        width: 50%;
+                        max-width: 750px;
+                    }
+
+                    @media screen and (max-width: 600px){
+                        #site_logo_navi{
+                            width: 100%;
+                        }
+                    }
+                </style>
+            </div>
+            <div class="content" style="background-color: rgba(100, 100, 100, .65);">
+                <div class="main_nav_menu">
+                    <a href="../">Home</a>
+                    <a href="../browse">Browse</a>
+                    <a>About</a>
+                    <a href="../stats">Website stats</a>
+                    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="update_menu()">&#9776;</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            function update_menu(){
+                var x = document.getElementById("main_navi");
+                if (x.className === "main_nav"){x.className += " mobile";}
+                else{x.className = "main_nav";}
+            }
+        </script>
+
+        <div class="content" style="background-color: rgba(175, 175, 175, .65);text-align: center;">
+            <h1>About the site:</h1>
+            <p>
+                This site was part of a college unit where I was given the task to create a e-commerce style site for a company known as "Paul's records".<br>
+                The site is made with Python using the Flask framework and was hosted originally on Heroku where it was publicly accessible via my site stshrewsbury.dev at the subdomain unit28.stshrewsbury.dev, once my unit was complete and the site was no longer needed I took it down and left the source code open on my GitHub page
+                <a href="https://github.com/stshrewsburyDev/Unit28CollegeWork" target="_blank">found HERE</a>.<br><br>
+
+                For any queries please contact my via my email: <b>stshrewsbury@gmail.com</b><br><br>
+
+                <b>Disclaimer:</b> This is my first proper site I have made without a pre-made backend service like wordpress, expect bugs and possible breakages.<br>
+                Also this site if it wasn't obvious is a prototype makeshift e-commerce website, no product shown here is actually owned by me or is actually sold.<br>
+                The name "Paul's records" is also just a makeshift name for this site and is not a real company owned by me.
+            </p>
+        </div>
+
+        <footer class="content">
+            <h1>Created by Steven Shrewsbury (stshrewsburyDev) <a href="https://github.com/stshrewsburyDev/Unit28CollegeWork" target="_blank">Website source code</a></h1>
+        </footer>
+
+        <style>*{font-family: 'Montserrat';}</style>
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Browsing products from Paul's records!">
+        <meta name="author" content="Steven Shrewsbury">
+        <title>Browse | Paul's records</title>
+
+        <meta name="og:title" content="Browse | Paul's records">
+        <meta name="og:description" content="Browsing products from Paul's records!">
+        <meta name="og:locale" content="en_GB">
+        <meta name="og:type" content="website">
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    </head>
+    <body style="background-image: url({{url_for('static', filename='images/bg.jpg')}}); background-attachment: fixed;">
+        <div class="main_nav" id="main_navi">
+            <div class="content" style="background-color: rgba(150, 150, 150, .65);">
+                <img id="site_logo_navi" src="{{url_for('static', filename='images/title.png')}}" alt="Website logo" align="center" valign="center">
+                <style>
+                    #site_logo_navi{
+                        width: 50%;
+                        max-width: 750px;
+                    }
+
+                    @media screen and (max-width: 600px){
+                        #site_logo_navi{
+                            width: 100%;
+                        }
+                    }
+                </style>
+            </div>
+            <div class="content" style="background-color: rgba(100, 100, 100, .65);">
+                <div class="main_nav_menu">
+                    <a href="../">Home</a>
+                    <a>Browse</a>
+                    <a href="../about">About</a>
+                    <a href="../stats">Website stats</a>
+                    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="update_menu()">&#9776;</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            function update_menu(){
+                var x = document.getElementById("main_navi");
+                if (x.className === "main_nav"){x.className += " mobile";}
+                else{x.className = "main_nav";}
+            }
+        </script>
+
+        <div class="content" style="background-color: rgba(175, 175, 175, .65);">
+            <h1 style="text-align: center;padding: 12px;font-size: 25px;">Browse through out list of our products:</h1>
+            <div style="margin-left: 15px;margin-right: 15px;padding: 6px; outline: 4px solid #404040;background-color: rgba(100, 100, 100, .65);">
+                <h2 style="margin: 0;font-size: 25px;">Search:</h2><br>
+                <div>
+                    <label for="fname">Name:</label>
+                    <input style="width:100%;height: 27px;" type="text" id="fname" name="fname"><br><br>
+                    <label>Type:</label><br>
+                    <input type="radio" id="ftype_CD" name="ftype" value="ftype_CD">
+                    <label for="ftype_CD">CD album</label><br>
+                    <input type="radio" id="ftype_record" name="ftype" value="ftype_record">
+                    <label for="ftype_record">Vinyl LP</label><br>
+                    <input type="radio" id="ftype_none" name="ftype" value="ftype_none" checked="checked">
+                    <label for="ftype_none">All types</label><br><br>
+                    <a href="javascript:void(0);" onclick="search_enter()"><button style="padding: 12px 28px;">Submit</button></a>
+                </div>
+                <script>
+                    function search_enter(){
+                        var name = document.getElementById("fname").value;
+                        var type = "";
+                        if (document.getElementById("ftype_CD").checked){
+                            type = "cd";
+                        } else if (document.getElementById("ftype_record").checked){
+                            type = "lp";
+                        }
+                        var path = "./?name=" + name + "&type=" + type;
+                        console.log(path);
+                        window.location.href = path;
+                    };
+                </script>
+            </div>
+            <br>
+            {% if products %}
+                {% for product in products %}
+                    <a href="../product/{{product[0]}}"><div class="product-box" style="margin: 10px;height: 120px;border-bottom: rgba(25, 25, 25, .65) 1px solid;">
+                        <img class="product-img" src="data:image/jpeg;base64,{{product[6]}}" alt="{{product[1]}} - album cover" style="width: 100px;">
+                        <div class="product-text">
+                            <h2 class="product-name">{{product[1]}}</h2>
+                            <h6 class="product-price">{{"£%.2f" % product[4]}} + {{"£%.2f" % product[5]}} P&P</h6>
+                            <h3 class="product-type">{{product[3]}}</h3>
+                        </div>
+                    </div></a>
+                {% endfor %}
+            {% else %}
+                <div style="text-align: center;">
+                    <p style="text-align: center;padding: 8px;font-size: 18px;">No results found...<br>Please check that your search term was correct and try again.</p>
+                    <a href="./"><button style="padding: 12px 28px;">Go back to main browse page</button></a>
+                </div><br>
+            {% endif %}
+            <style>
+                .product-box:hover{
+                    background-color: rgba(100, 100, 100, .65);
+                }
+
+                .product-img{
+                    float: left;
+                }
+
+                .product-text{
+                    margin-left: 15px;
+                    float: left;
+                }
+
+                .product-name{
+                    color: rgb(50, 50, 50);
+                    font-size: 22px;
+                    margin-top: 7px;
+                    margin-bottom: 0;
+                }
+
+                .product-price{
+                    color: rgb(60, 60, 60);
+                    font-size: 16px;
+                    margin-top: 7px;
+                    margin-bottom: 0;
+                }
+
+                .product-type{
+                    color: rgb(75, 75, 75);
+                    font-size: 18px;
+                    margin-top: 7px;
+                    margin-bottom: 0;
+                }
+            </style>
+        </div>
+
+        <footer class="content">
+            <h1>Created by Steven Shrewsbury (stshrewsburyDev) <a href="https://github.com/stshrewsburyDev/Unit28CollegeWork" target="_blank">Website source code</a></h1>
+        </footer>
+
+        <style>*{font-family: 'Montserrat';}</style>
+    </body>
+</html>
